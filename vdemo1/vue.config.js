@@ -79,13 +79,13 @@ module.exports = {
   },
 
   // 配置 CSS 预处理器
-  css: {
-      loaderOptions: {
-          less: {
-              javascriptEnabled: true,
-          },
-      },
-  },
+//   css: {
+//       loaderOptions: {
+//           less: {
+//               javascriptEnabled: true,
+//           },
+//       },
+//   },
   // 配置插件
   pluginOptions: {
       // ...其他插件配置
