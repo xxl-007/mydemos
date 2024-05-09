@@ -5,7 +5,7 @@
             collapsed-width="0"
             @collapse="onCollapse"
             @breakpoint="onBreakpoint"
-            :style="{ overflow: 'auto', height: '100vh', position: 'fixed', left: 0 }"
+            :style="{ overflow: 'auto', height: '100vh', position: 'relative', left: 0 }"
         >
             <div class="logo" />
             <a-menu theme="dark" mode="inline" :default-selected-keys="['4']">
@@ -13,7 +13,7 @@
                     <router-link to="/home">home </router-link>
                 </a-menu-item>
                 <a-menu-item key="2">
-                    <router-link to="/about">about </router-link>
+                    <router-link to="/about">表单 </router-link>
                 </a-menu-item>
                 <a-menu-item key="3">
                     <a-icon type="upload" />
@@ -90,7 +90,9 @@
                     :style="{
                         padding: '24px',
                         background: '#fff',
-                        minHeight: 'calc(100vh - 138px)',
+                        minHeight: 'calc(100vh - 168px)',
+                        overflow: 'hidden',
+                        textAlign: 'left',
                     }"
                 >
                     <router-view></router-view>
