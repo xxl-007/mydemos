@@ -1,0 +1,182 @@
+<!--
+ * @Author: xuxiaoli02 xuxiaoli02@baidu.com
+ * @Date: 2024-05-14 09:36:55
+ * @LastEditors: xuxiaoli02 xuxiaoli02@baidu.com
+ * @LastEditTime: 2024-05-14 16:06:33
+ * @FilePath: /vsoc/Users/xuxiaoli02/Desktop/xxl/前端学习资料/学习调试.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>这里是练习</div>
+    <script>
+        // // // 题目1
+        // function Foo() {
+        //     Foo.a = function() { console.log(1) } // 给Foo函数自身添加一个方法a
+        //     this.a = function() { console.log(2) } // 给Foo的实例对象添加一个方法a
+        // }
+        // Foo.prototype.a = function() { console.log(3) } // 给Foo的原型添加一个方法a
+        // Foo.a = function() { console.log(4) } // 再次给Foo函数自身添加一个方法a，覆盖前面的赋值
+        // Foo.a(); // 4
+        // let obj = new Foo();
+        // obj.a(); // 2
+        // Foo.a(); // 1  ? 4   打印出来是1，this被new调用，指向的创建的对象obj， new也会执行Foo函数，倒数第三行修改了Foo.a，所以打印出来的是1
+
+        // // 题目二
+        // function changeObjProperty(o) { 
+        //     o.siteUrl = "http://www.baidu.com"
+        //     o = new Object()
+        //     o.siteUrl = "http://www.google.com"
+        // } 
+        // let webSite = new Object();
+        // changeObjProperty(webSite);
+        // console.log(webSite.siteUrl);
+        // 由于changeObjProperty函数内部首先更改了webSite对象的siteUrl属性，
+        // 然后创建了一个新的对象并更改了它的siteUrl属性（但这不会影响webSite对象），所以打印的结果是webSite对象的siteUrl属性，即"http://www.baidu.com"。
+        // 总结来说：
+        //     尽管changeObjProperty函数内部更改了对象的属性，然后又重新指向了一个新对象并再次更改其属性，
+        //     但是由于JavaScript的函数参数传递是值传递（这里的值是指对象引用的值），
+        //     对函数内部o的引用改变不会影响外部的webSite对象。
+        //     因此，console.log(webSite.siteUrl);的输出结果是"http://www.baidu.com"。
+
+
+        // // // 题目三
+        // async function async1() { 
+        //     console.log('async1 start'); 
+        //     await async2(); 
+        //     console.log('async1 end');
+        // }
+        // async function async2() { console.log('async2');}
+        // console.log('script start');  
+        // new Promise(
+        //     function(resolve) { 
+        //         console.log('promise1222');
+        //         resolve();
+        //     }
+        // ).then(
+        //     function() { console.log('promise2222');}
+        // );
+        // setTimeout(function() {
+        //      console.log('setTimeout');
+        //     }, 0
+        // )
+        // async1();
+        // new Promise(
+        //     function(resolve) { 
+        //         console.log('promise1');
+        //         resolve();
+        //     }
+        // ).then(
+        //     function() { console.log('promise2');}
+        // );
+        // console.log('script end');
+
+
+
+        // console.log('start');  // 1
+        // const promise = new Promise((resolve) => {
+        // console.log('promise executor'); // 2
+        // resolve('promise result');
+        // });
+
+        // promise.then((result) => {
+        // console.log('promise then callback', result); // 5
+        // });
+
+        // setTimeout(() => {
+        // console.log('setTimeout callback'); // 8
+        // }, 0);
+
+        // async function asyncFunc() {
+        // console.log('async function start'); //3
+        // const asyncResult = await promise;
+        // console.log('async function after await', asyncResult); // 6
+        // return 'async function result';
+        // }
+
+        // const asyncPromise = asyncFunc();
+
+        // asyncPromise.then((result) => {
+        // console.log('async promise then callback', result); // 7
+        // });
+
+        // console.log('end');  //4
+
+
+
+        // var b = 10;
+        // (function b(){ 
+        //     b = 20;
+        //     console.log(b); 
+        // })();
+
+
+
+        // var a = 10;                       // 在全局作用域声明并初始化变量 a为10
+        // (function () { 
+        //     console.log(a);               // undefined，因为变量提升，声明被提前到函数顶部，但初始化保持在当前位置
+        //     a = 5;     
+        //     console.log(a)                   // 修改全局变量a的值为5
+        //     console.log(window.a);       // 输出全局变量a的值，此时为5（等同于console.log(a)）
+
+        //     var a = 20;                    // 声明局部变量a并初始化为20，由于变量提升，声明被提前到函数顶部，但初始化保持在当前位置
+        //     console.log(a);               // 输出局部变量a的值，此时为20（注意：这里不会再次输出全局变量a的值，因为局部变量a已经声明并遮挡了全局变量a）
+        // })();
+
+
+
+        // 题目：
+        //     var a = {n: 1};
+        //     var b = a;
+        //     a.x = a = {n: 2};
+        //     console.log(a.x); console.log(b.x)
+        // 输出结果将是：
+        //     undefined
+        //     { n: 2 }
+
+        // 解释：
+        //     当执行 a.x = a = {n: 2}; 
+        //     这行代码时，赋值操作是从右向左进行的。
+        //     首先，a 被赋予了一个新的对象 {n: 2}。
+        //     然后，试图给原始对象（此时由变量 b 引用）的属性 x 赋值。
+        //     因此，对象 b 现在有了一个属性 x，其值为 {n: 2}。
+        //     但是，由于 a 已经被重新赋值为一个新的对象 {n: 2}，
+        //     它没有属性 x，所以 a.x 是 undefined。
+        //     而 b.x 是 {n: 2}，因为 b 仍然引用着原始对象，
+        //     并且该对象的属性 x 已经被赋值。
+
+
+
+        // // 下面是如何使用这个 myNew 函数的例子：
+        // function myNew(Constructor, ...args) {
+        //     const obj = {};
+        //     obj.__proto__ = Constructor.prototype;
+        //     let res = Constructor.apply(obj, args);
+        //     return res instanceof Object ? res : obj;
+        // };
+        // 构造函数
+        // function Person(name, age) {
+        //     this.name = name;
+        //     this.age = age;
+        // }
+        // Person.prototype.eat = function() {
+        //     console.log('eat');
+        // }
+        // let xxl = myNew(Person, 'xxl', 20);
+        // console.log(xxl.name);
+        
+
+
+
+
+
+    </script>
+</body>
+</html>
