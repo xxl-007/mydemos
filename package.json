@@ -1,5 +1,6 @@
 {
   "dependencies": {
     "vue-count-to": "^1.0.13"
-  }
+  },
+  "packageManager": "yarn@3.6.4"
 }

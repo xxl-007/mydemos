@@ -69,6 +69,25 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less">
+// 图片适应
+// img {
+//     object-fit: contain;
+// }
 
+// 遇到换行符自动换行
+// pre {
+//     width: calc(100% / 3);
+//     word-break: break-all;
+//     white-space: pre-line;
+// }
+
+// .detail-tab {
+//     overflow: hidden;
+//     white-space: nowrap;
+//     text-overflow: ellipsis;
+//     &::v-deep .ant-tabs .ant-tabs-large-bar .ant-tabs-nav-container {
+//         font-size: 14px;
+//     }
+// }
 </style>
