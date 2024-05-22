@@ -554,7 +554,7 @@
             <script setup> 更加简洁的语法使得它与其他 Vue 3 的新特性（如 defineProps、defineEmits 以及 <style vars>）结合得更为紧密和直观。
             而在 setup() 中使用这些新特性可能需要稍微多一点的样板代码。
         总的来说：
-            <script setup> 和 setup() 在功能上是等价的，它们都是 Vue 3 Composition API 的表现形式。选择哪种写法主要取决于你的个人喜好和项目的具体需求。如果你追求代码的简洁性和直观性，并且愿意接受一定的学习曲线，那么 <script setup> 可能是一个不错的选择。而如果你更看重代码的明确性和结构性，那么 setup() 可能会更适合你。
+            <script setup> 和 setup() 在功能上是等价的，它们都是 Vue 3 Composition API 的表现形式。选择哪种写法主要取决于你的个人喜好和项目的具体需求。如果你追求代码的简洁性和直观性，并且愿意接受一定的学习曲线，那么 <scrip setup> 可能是一个不错的选择。而如果你更看重代码的明确性和结构性，那么 setup() 可能会更适合你。
 
 四、react
 
@@ -662,7 +662,7 @@
         （1）脚本没有 defer 或 async，浏览器会立即加载并执行指定的脚本，也就是说不等待后续载入的文档元素，读到就加载并执行。 
         （2）defer 属性表示延迟[执行]引入的 JavaScript，即这段 JavaScript 加载时 , HTML并未停止解析，这两个过程是并行的。
             当整个 document 解析完毕后再执行脚本文件，在 DOMContentLoaded 事件触发之前 完成。多个脚本按顺序执行。 
-        （3）async 属性表示异步执行引入的 JavaScript，与 defer 的区别在于，如果已经加 载好，就会开始执行，也就是说它的执行仍然会阻塞文档的解析，只是它的加载过程不会阻塞。多个脚本的执行顺序无法保证。
+        （3）async 属性表示异步执行引入的 JavaScript，与 defer 的区别在于，如果已经加载好，就会开始执行，也就是说它的执行仍然会阻塞文档的解析，只是它的加载过程不会阻塞。多个脚本的执行顺序无法保证。
 
 
 6、浏览器渲染过程
@@ -672,6 +672,50 @@
     3. 合并 DOM 和 CSSOM 树以生成渲染树。
     4. 布局和绘制：根据渲染树来布局，计算每个节点的位置和大小信息。
     5. 浏览器会将每个节点绘制到屏幕上。
+
+7、省略
+    /*单行文本溢出*/
+        p { 
+            overflow: hidden; 
+            text-overflow: ellipsis; 
+            white-space: nowrap;
+        }
+
+    /*多行文本溢出*/：使用伪元素和线性渐变来实现多行文本省略的效果
+            p {
+                max-width: 200px;
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: 2; /* 设置显示的行数 */
+                -webkit-box-orient: vertical;
+                word-break: break-all;
+            }
+        上面的代码使用了-webkit-line-clamp属性，它是WebKit浏览器引擎（如Chrome和Safari）的一个非标准属性，用于限制在一个块元素显示的文本的行数。如果文本行数超过了限制，就会用省略号（…）来表示。
+        然而，这个方法并不是所有浏览器都支持。为了兼容更多的浏览器，你可以使用伪元素和线性渐变来模拟多行文本省略的效果：
+            p {
+                position: relative; 
+                line-height: 1.5em; /*高度为需要显示的行数*行高，比如这里我们显示两行，则为 3*/ 
+                height: 3em;
+                overflow: hidden;
+            }
+            p:after { 
+                content: "...";
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                background-color: #fff;
+            }
+
+8、隐藏元素的 background-image 到底加不加载？
+回答
+（1）元素的背景图片 
+    -元素本身设置 display:none，会请求图片 
+    -父级元素设置 display:none，不会请求图片
+    -样式 没有元素使用，不会请求
+    -:hover 样式下，触发时请求 
+（2）img 标签图片任何情况下都会请求图片
+
+   
    
 
     
